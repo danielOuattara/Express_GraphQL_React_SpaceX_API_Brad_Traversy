@@ -1,14 +1,10 @@
 import "./App.css";
 import logo from "./spaceX-logo.jpeg";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import Launches from "./components/Launches";
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphl",
+  uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -21,6 +17,7 @@ function App() {
           alt="SpaceX"
           style={{ maxwidth: 300, display: "block", margin: "auto" }}
         />
+        <Launches />
       </div>
     </ApolloProvider>
   );
