@@ -43,6 +43,9 @@ const RootQuery = new GraphQLObjectType({
         return axios
           .get("https://api.spacexdata.com/v3/launches", {
             headers: { "Accept-Encoding": "gzip,deflate,compress" },
+            params: {
+              limit: 100,
+            },
           })
           .then((response) => response.data);
       },
