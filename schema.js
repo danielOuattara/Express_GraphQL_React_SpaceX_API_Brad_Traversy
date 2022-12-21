@@ -33,7 +33,7 @@ const RocketType = new GraphQLObjectType({
   }),
 });
 
-//-----
+//------------------------------------------------------------------------
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -82,7 +82,7 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-//-----
+//---------------------------------------------------------------------------
 module.exports = new GraphQLSchema({
   query: RootQuery,
 });
