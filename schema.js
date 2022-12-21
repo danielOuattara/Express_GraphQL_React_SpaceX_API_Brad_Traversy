@@ -7,9 +7,10 @@ const {
   GraphQLInt,
   GraphQLBoolean,
   GraphQLList,
+  GraphQLID,
 } = graphql;
 
-//---------------------------
+//------------------------------------------------------------------------
 const LaunchType = new GraphQLObjectType({
   name: "Launch",
   fields: () => ({
@@ -52,6 +53,27 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return axios
           .get(`https://api.spacexdata.com/v3/launches/${args.flight_number}`, {
+            headers: { "Accept-Encoding": "gzip,deflate,compress" },
+          })
+          .then((response) => response.data);
+      },
+    },
+    rockets: {
+      type: new GraphQLList(RocketType),
+      resolve(parent, args) {
+        return axios
+          .get("https://api.spacexdata.com/v3/rockets", {
+            headers: { "Accept-Encoding": "gzip,deflate,compress" },
+          })
+          .then((response) => response.data);
+      },
+    },
+    rocket: {
+      type: RocketType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return axios
+          .get(`https://api.spacexdata.com/v3/rockets/${args.id}`, {
             headers: { "Accept-Encoding": "gzip,deflate,compress" },
           })
           .then((response) => response.data);
