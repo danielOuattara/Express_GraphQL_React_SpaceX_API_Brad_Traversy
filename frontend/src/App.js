@@ -8,14 +8,14 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://flyby-gateway.herokuapp.com/",
+  uri: "http://localhost:5000/graphl",
   cache: new InMemoryCache(),
 });
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <div className="container">
         <img
           src={logo}
           alt="SpaceX"
