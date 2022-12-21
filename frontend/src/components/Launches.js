@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { graphql } from "@apollo/client/react/hoc";
 import { gql } from "@apollo/client";
+import LaunchItem from "./LaunchItems";
 //--------------------------------------
 
 const LAUNCHES_QUERY = gql`
@@ -26,16 +27,15 @@ class Launches extends Component {
     }
 
     return data.launches.map((launch) => (
-      <li key={launch.flight_number}>{launch.mission_name}</li>
+      <LaunchItem key={launch.flight_number} {...launch} />
     ));
   };
   render() {
     return (
-      <div>
-        {" "}
+      <Fragment>
         <h1 className="display-4 my-3">Launches</h1>
         <ul id="">{this.displayLaunches()}</ul>
-      </div>
+      </Fragment>
     );
   }
 }
